@@ -1,0 +1,47 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>{{ editIndex === null ? 'Add Customer' : 'Edit Customer' }}</h2>
+
+    <input
+      placeholder="Name"
+      [(ngModel)]="newCustomer.name"
+    >
+
+    <input
+      placeholder="Email"
+      [(ngModel)]="newCustomer.email"
+    >
+
+    <input
+      placeholder="Phone"
+      [(ngModel)]="newCustomer.phone"
+    >
+
+    <button (click)="addOrUpdateCustomer()">
+      {{ editIndex === null ? 'Add Customer' : 'Update Customer' }}
+    </button>
+
+    <h3>Customer List</h3>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let c of customers; let i = index">
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>
+        <td>
+          <button (click)="editCustomer(i)">Edit</button>
+          <button (click)="deleteCustomer(i)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

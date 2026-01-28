@@ -1,0 +1,42 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>Set Appointment</h2>
+
+    <select [(ngModel)]="appointment.customer">
+      <option value="">Select Customer</option>
+      <option *ngFor="let c of customers">{{ c }}</option>
+    </select>
+
+    <select [(ngModel)]="appointment.provider">
+      <option value="">Select Provider</option>
+      <option *ngFor="let p of providers">{{ p.name }}</option>
+    </select>
+
+    <input type="date" [(ngModel)]="appointment.date">
+    <input type="time" [(ngModel)]="appointment.time">
+
+    <button (click)="addAppointment()">Create Appointment</button>
+
+    <h3>Appointments List</h3>
+
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Provider</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Status</th>
+      </tr>
+
+      <tr *ngFor="let a of appointments">
+        <td>{{ a.customer }}</td>
+        <td>{{ a.provider }}</td>
+        <td>{{ a.date }}</td>
+        <td>{{ a.time }}</td>
+        <td>{{ a.status }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

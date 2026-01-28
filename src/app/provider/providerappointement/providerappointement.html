@@ -1,0 +1,40 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>My Appointments</h2>
+
+    <table>
+      <tr>
+        <th>Customer</th>
+        <th>Service</th>
+        <th>Date</th>
+        <th>Slot</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let a of appointments; let i = index">
+        <td>{{ a.customer }}</td>
+        <td>{{ a.service }}</td>
+        <td>{{ a.date }}</td>
+        <td>{{ a.slot }}</td>
+        <td>{{ a.status }}</td>
+
+        <td>
+          <button
+            *ngIf="a.status === 'Scheduled'"
+            (click)="markCompleted(i)">
+            Complete
+          </button>
+
+          <button
+            *ngIf="a.status === 'Scheduled'"
+            (click)="cancel(i)">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

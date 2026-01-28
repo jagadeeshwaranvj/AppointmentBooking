@@ -1,0 +1,40 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>Service Management</h2>
+
+
+    <div class="form">
+      <input type="text" placeholder="Service Name"
+             [(ngModel)]="newService.name">
+
+      <input type="number" placeholder="Duration (mins)"
+             [(ngModel)]="newService.duration">
+
+      <button (click)="addService()">Add Service</button>
+    </div>
+
+ 
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Duration</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of services">
+          <td>{{ s.name }}</td>
+          <td>{{ s.duration }} mins</td>
+          <td>
+            <span [class.active]="s.active">
+              {{ s.active ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<h2>Login</h2>
+
+<select [(ngModel)]="role">
+  <option value="">Select Role</option>
+  <option value="admin">Admin</option>
+  <option value="provider">Provider</option>
+  <option value="customer">Customer</option>
+</select>
+
+<br><br>
+
+<button (click)="login()">Login</button>

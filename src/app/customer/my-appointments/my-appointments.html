@@ -1,0 +1,38 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>My Appointments</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Service</th>
+          <th>Provider</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let a of appointments; let i = index">
+  <td>{{ a.date }}</td>
+  <td>{{ a.service }}</td>
+  <td>{{ a.provider }}</td>
+  <td>{{ a.status }}</td>
+
+  <td>
+    <button *ngIf="canCancel(a)" (click)="cancel(i)">
+      Cancel
+    </button>
+
+    <span *ngIf="!canCancel(a)">—</span>
+  </td>
+</tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

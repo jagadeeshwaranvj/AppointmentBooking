@@ -1,0 +1,58 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>{{ editIndex === null ? 'Add Provider' : 'Edit Provider' }}</h2>
+
+    <input
+      placeholder="Name"
+      [(ngModel)]="newProvider.name"
+    >
+
+    <input
+      placeholder="Email"
+      [(ngModel)]="newProvider.email"
+    >
+
+    <input
+      placeholder="Specialization"
+      [(ngModel)]="newProvider.specialization"
+    >
+
+    <button (click)="addOrUpdateProvider()">
+      {{ editIndex === null ? 'Add Provider' : 'Update Provider' }}
+    </button>
+
+    <h3>Provider List</h3>
+
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Specialization</th>
+        <th>Availability</th>
+        <th>Actions</th>
+      </tr>
+
+      <tr *ngFor="let p of providers; let i = index">
+        <td>{{ p.name }}</td>
+        <td>{{ p.email }}</td>
+        <td>{{ p.specialization }}</td>
+
+        <td>
+          <span [style.color]="p.available ? 'green' : 'red'">
+            {{ p.available ? 'Available' : 'Not Available' }}
+          </span>
+        </td>
+
+        <td>
+          <button (click)="editProvider(i)">Edit</button>
+          <button (click)="deleteProvider(i)">Delete</button>
+          <button (click)="toggleAvailability(i)">
+            {{ p.available ? 'Mark Unavailable' : 'Mark Available' }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

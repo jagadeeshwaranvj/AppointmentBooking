@@ -1,0 +1,50 @@
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  padding: 20px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f3f4f6;
+}
+
+/* Status colors */
+.scheduled {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.completed {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.cancelled {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.cancel-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}

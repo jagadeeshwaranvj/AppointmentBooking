@@ -1,0 +1,19 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>Reports</h2>
+
+    <table>
+      <tr>
+        <th>Provider</th>
+        <th>Total Appointments</th>
+      </tr>
+
+      <tr *ngFor="let r of reportData">
+        <td>{{ r.name }}</td>
+        <td>{{ r.count }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

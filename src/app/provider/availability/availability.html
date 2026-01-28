@@ -1,0 +1,42 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>Set Availability</h2>
+
+  
+    <div class="form">
+      <select [(ngModel)]="newAvailability.day">
+        <option value="">Select Day</option>
+        <option *ngFor="let d of days" [value]="d">
+          {{ d }}
+        </option>
+      </select>
+
+      <input type="time" [(ngModel)]="newAvailability.start">
+      <input type="time" [(ngModel)]="newAvailability.end">
+
+      <button (click)="addAvailability()">Add</button>
+    </div>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let a of availabilityList">
+          <td>{{ a.day }}</td>
+          <td>{{ a.start }}</td>
+          <td>{{ a.end }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>Book Appointment</h2>
+
+    <!-- SERVICE -->
+    <label>Service</label><br>
+    <select
+      [(ngModel)]="selectedService"
+      (ngModelChange)="generateSlots()"
+    >
+      <option [ngValue]="null">Select Service</option>
+      <option *ngFor="let s of services" [ngValue]="s">
+        {{ s.name }}
+      </option>
+    </select>
+
+    <br><br>
+
+    <!-- PROVIDER -->
+    <label>Provider</label><br>
+    <select
+      [(ngModel)]="selectedProvider"
+      (ngModelChange)="generateSlots()"
+    >
+      <option value="">Select Provider</option>
+      <option *ngFor="let p of availableProviders" [value]="p.name">
+        {{ p.name }} ({{ p.specialization }})
+      </option>
+    </select>
+
+    <br><br>
+
+    <!-- DATE -->
+    <label>Date</label><br>
+    <input
+      type="date"
+      [(ngModel)]="selectedDate"
+      (change)="generateSlots()"
+    />
+
+    <br><br>
+
+    <!-- SLOTS -->
+    <label>Available Slots</label><br>
+    <button
+      *ngFor="let slot of slots"
+      (click)="selectedSlot = slot"
+      [style.background]="selectedSlot === slot ? '#22c55e' : '#e5e7eb'"
+      style="margin-right:8px"
+    >
+      {{ slot }}
+    </button>
+
+    <br><br>
+
+    <button (click)="book()">Book Appointment</button>
+  </div>
+</div>
