@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Sidebar } from '../../shared/sidebar/sidebar';
-
+import { AppointmentService } from '../../shared/appointementservice';
 @Component({
   selector: 'app-appointments',
   imports: [CommonModule,FormsModule,Sidebar],
@@ -10,39 +10,15 @@ import { Sidebar } from '../../shared/sidebar/sidebar';
   styleUrl: './appointments.css',
 })
 export class Appointments {
- providers = [
-    { name: 'Dr. Kumar', available: true },
-    { name: 'Dr. Priya', available: false }
-  ];
+ constructor(private appointmentService: AppointmentService) {}
 
-  customers = ['Ravi', 'Anu'];
-
-  appointments: any[] = [];
-
-  appointment = {
-    customer: '',
-    provider: '',
-    date: '',
-    time: '',
-    status: 'Scheduled'
-  };
-
-  checkAvailability(provider: any) {
-    return provider.available ? 'Available' : 'Not Available';
+  // Admin sees all appointments
+  get appointments() {
+    return this.appointmentService.getAllAppointments();
   }
 
-  addAppointment() {
-    this.appointments.push({ ...this.appointment });
-    this.reset();
-  }
-
-  reset() {
-    this.appointment = {
-      customer: '',
-      provider: '',
-      date: '',
-      time: '',
-      status: 'Scheduled'
-    };
+  // Admin updates status
+  updateStatus(index: number, status: string) {
+    this.appointmentService.updateStatus(index, status);
   }
 }

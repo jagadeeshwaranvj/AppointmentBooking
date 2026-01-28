@@ -1,0 +1,31 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="content">
+    <h2>Registration</h2>
+
+    <!-- CUSTOMER REGISTRATION -->
+    <div class="card">
+      <h3>Register New Customer</h3>
+
+      <input placeholder="Name" [(ngModel)]="customer.name" />
+      <input placeholder="Email" [(ngModel)]="customer.email" />
+      <input placeholder="Phone" [(ngModel)]="customer.phone" />
+      <input type="password" placeholder="Password" [(ngModel)]="customer.password" />
+
+      <button (click)="addCustomer()">Register Customer</button>
+    </div>
+
+    <!-- PROVIDER REGISTRATION -->
+    <div class="card">
+      <h3>Register New Provider</h3>
+
+      <input placeholder="Name" [(ngModel)]="provider.name" />
+      <input placeholder="Email" [(ngModel)]="provider.email" />
+      <input placeholder="Phone" [(ngModel)]="provider.phone" />
+      <input type="password" placeholder="Password" [(ngModel)]="provider.password" />
+
+      <button (click)="addProvider()">Register Provider</button>
+    </div>
+  </div>
+</div>

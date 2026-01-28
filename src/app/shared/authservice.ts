@@ -4,29 +4,48 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Authservice {
-   private role = '';
+   // ✅ DECLARE PROPERTIES
+  private role: string = '';
+  private user: string = '';
 
   setRole(role: string) {
     this.role = role;
+    localStorage.setItem('role', role);
   }
 
-  getRole() {
-    return this.role;
+  getRole(): string {
+    return localStorage.getItem('role') || '';
   }
 
-  isAdmin() {
-    return this.role === 'admin';
+  setUser(username: string) {
+    this.user = username;
+    localStorage.setItem('user', username);
   }
 
-  isProvider() {
-    return this.role === 'provider';
+  getUser(): string {
+    return localStorage.getItem('user') || '';
   }
 
-  isCustomer() {
-    return this.role === 'customer';
+  // ✅ ROLE HELPERS (THIS FIXES YOUR ERROR)
+  isAdmin(): boolean {
+    return this.getRole() === 'admin';
   }
+
+  isProvider(): boolean {
+    return this.getRole() === 'provider';
+  }
+
+  isCustomer(): boolean {
+    return this.getRole() === 'customer';
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getRole();
+  }
+
   logout() {
-  this.role = '';
-}
+    localStorage.clear();
+  }
+
 
 }

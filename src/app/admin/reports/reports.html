@@ -2,18 +2,78 @@
   <app-sidebar></app-sidebar>
 
   <div class="content">
-    <h2>Reports</h2>
+    <h2 class="page-title">Reports</h2>
 
-    <table>
-      <tr>
-        <th>Provider</th>
-        <th>Total Appointments</th>
-      </tr>
+    <!-- Appointments by Service -->
+    <div class="report-card">
+      <h3>Appointments by Service</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Total Appointments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let s of appointmentsByService | keyvalue">
+              <td>{{ s.key }}</td>
+              <td>{{ s.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-      <tr *ngFor="let r of reportData">
-        <td>{{ r.name }}</td>
-        <td>{{ r.count }}</td>
-      </tr>
-    </table>
+    <!-- Appointment Status Summary -->
+    <div class="report-card">
+      <h3>Appointment Status Summary</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Scheduled</td>
+              <td>{{ statusCount.Scheduled }}</td>
+            </tr>
+            <tr>
+              <td>Completed</td>
+              <td>{{ statusCount.Completed }}</td>
+            </tr>
+            <tr>
+              <td>Cancelled</td>
+              <td>{{ statusCount.Cancelled }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Appointments by Date -->
+    <div class="report-card">
+      <h3>Appointments by Date</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Total Appointments</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let d of appointmentsByDate | keyvalue">
+              <td>{{ d.key }}</td>
+              <td>{{ d.value }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>

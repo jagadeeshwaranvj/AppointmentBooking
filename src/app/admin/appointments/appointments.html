@@ -2,41 +2,40 @@
   <app-sidebar></app-sidebar>
 
   <div class="content">
-    <h2>Set Appointment</h2>
+    <h2>All Appointments</h2>
 
-    <select [(ngModel)]="appointment.customer">
-      <option value="">Select Customer</option>
-      <option *ngFor="let c of customers">{{ c }}</option>
-    </select>
+    <div class="table-container">
+      <table>
+        <tr>
+          <th>Customer</th>
+          <th>Service</th>
+          <th>Provider</th>
+          <th>Date</th>
+          <th>Slot</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
 
-    <select [(ngModel)]="appointment.provider">
-      <option value="">Select Provider</option>
-      <option *ngFor="let p of providers">{{ p.name }}</option>
-    </select>
+        <tr *ngFor="let a of appointments; let i = index">
+          <td>{{ a.customer }}</td>
+          <td>{{ a.service }}</td>
+          <td>{{ a.provider }}</td>
+          <td>{{ a.date }}</td>
+          <td>{{ a.slot }}</td>
+          <td>{{ a.status }}</td>
 
-    <input type="date" [(ngModel)]="appointment.date">
-    <input type="time" [(ngModel)]="appointment.time">
-
-    <button (click)="addAppointment()">Create Appointment</button>
-
-    <h3>Appointments List</h3>
-
-    <table>
-      <tr>
-        <th>Customer</th>
-        <th>Provider</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Status</th>
-      </tr>
-
-      <tr *ngFor="let a of appointments">
-        <td>{{ a.customer }}</td>
-        <td>{{ a.provider }}</td>
-        <td>{{ a.date }}</td>
-        <td>{{ a.time }}</td>
-        <td>{{ a.status }}</td>
-      </tr>
-    </table>
+          <td>
+            <select
+              [ngModel]="a.status"
+              (ngModelChange)="updateStatus(i, $event)"
+            >
+              <option value="Scheduled">Scheduled</option>
+              <option value="Completed">Completed</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

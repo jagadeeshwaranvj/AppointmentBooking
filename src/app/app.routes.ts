@@ -18,7 +18,7 @@ import { Reports } from './admin/reports/reports';
 import { Providerappointement } from './provider/providerappointement/providerappointement';
 
 import { authguardGuard } from './shared/authguard-guard';
-
+import { Registeration } from './admin/registeration/registeration';
 
 export const routes: Routes = [
   {
@@ -31,12 +31,13 @@ export const routes: Routes = [
   {path:'admin/providers',component:Providers,canActivate:[authguardGuard('admin')]},
 {path:'admin/customers',component:Customers,canActivate:[authguardGuard('admin')]},
 {path:'admin/appointments',component:Appointments,canActivate:[authguardGuard('admin')]},
-
+{path:'admin/registeration',component:Registeration,canActivate:[authguardGuard('admin')]}, 
 
     {path:'provider',component:ProviderDashboardComponent,canActivate:[authguardGuard('provider')]},
     {path:'provider/availability',component:Availability,},
 
     {path:'admin/reports',component:Reports,canActivate:[authguardGuard('admin')]},
+    {path:'admin/registeration',component:Registeration,canActivate:[authguardGuard('admin')]},
 
 {path:'customer',component:Customerdasboard,canActivate:[authguardGuard('customer')]},
   {path:'customer/booking',component:Booking,canActivate:[authguardGuard('customer')]},
