@@ -2,18 +2,21 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Sidebar } from '../../shared/sidebar/sidebar';
-
+import { Userservice } from '../../shared/userservice';
 @Component({
   selector: 'app-customers',
+  standalone: true,
   imports: [CommonModule,FormsModule,Sidebar],
   templateUrl: './customers.html',
   styleUrl: './customers.css',
 })
 export class Customers {
-customers = [
-    { name: 'Ravi', email: 'ravi@mail.com', phone: '9876543210' },
-    { name: 'Anu', email: 'anu@mail.com', phone: '9123456789' }
-  ];
+  constructor(private userService: Userservice) {}
+
+  // 🔥 SINGLE SOURCE OF TRUTH
+  get customers() {
+    return this.userService.getCustomers();
+  }
 
   newCustomer = {
     name: '',
@@ -25,11 +28,9 @@ customers = [
 
   addOrUpdateCustomer() {
     if (this.editIndex === null) {
-      // ADD
-      this.customers.push({ ...this.newCustomer });
+      this.userService.addCustomer({ ...this.newCustomer });
     } else {
-      // UPDATE
-      this.customers[this.editIndex] = { ...this.newCustomer };
+      this.userService.updateCustomer(this.editIndex, { ...this.newCustomer });
       this.editIndex = null;
     }
     this.resetForm();
@@ -41,7 +42,7 @@ customers = [
   }
 
   deleteCustomer(index: number) {
-    this.customers.splice(index, 1);
+    this.userService.deleteCustomer(index);
   }
 
   resetForm() {

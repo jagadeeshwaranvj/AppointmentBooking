@@ -4,10 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Userservice {
-   customers: any[] = [];
-  providers: any[] = [];
+     private customers: any[] = [];
+  private providers: any[] = [];
 
-  // 🔹 CUSTOMER
+  // CUSTOMER
   addCustomer(customer: any) {
     this.customers.push(customer);
   }
@@ -16,7 +16,15 @@ export class Userservice {
     return this.customers;
   }
 
-  // 🔹 PROVIDER
+  updateCustomer(index: number, customer: any) {
+    this.customers[index] = customer;
+  }
+
+  deleteCustomer(index: number) {
+    this.customers.splice(index, 1);
+  }
+
+  // PROVIDER
   addProvider(provider: any) {
     this.providers.push(provider);
   }
